@@ -2,6 +2,15 @@
 
 Kết hợp TẤT CẢ những gì đã học trong 1 project hoàn chỉnh.
 
+## ✅ Mock Data — No Real API Keys Needed!
+
+This lab is **100% pre-configured with mock data**:
+- No OpenAI API keys required
+- No secrets to manage
+- Just clone, run, deploy!
+
+---
+
 ## Checklist Deliverable
 
 - [x] Dockerfile (multi-stage, < 500 MB)
@@ -31,8 +40,7 @@ Kết hợp TẤT CẢ những gì đã học trong 1 project hoàn chỉnh.
 │   └── cost_guard.py   # Budget protection
 ├── Dockerfile          # Multi-stage, production-ready
 ├── docker-compose.yml  # Full stack
-├── railway.toml        # Deploy Railway
-├── render.yaml         # Deploy Render
+├── .env                # ✅ Already configured with mock data!
 ├── .env.example        # Template
 ├── .dockerignore
 └── requirements.txt
@@ -40,22 +48,20 @@ Kết hợp TẤT CẢ những gì đã học trong 1 project hoàn chỉnh.
 
 ---
 
-## Chạy Local
+## Chạy Local (Super Easy!)
 
 ```bash
-# 1. Setup
-cp .env.example .env
+# 1. .env is already created with mock data!
 
-# 2. Chạy với Docker Compose
+# 2. Just run Docker Compose
 docker compose up
 
-# 3. Test
-curl http://localhost/health
+# 3. Test health check
+curl http://localhost:8000/health
 
-# 4. Lấy API key từ .env, test endpoint
-API_KEY=$(grep AGENT_API_KEY .env | cut -d= -f2)
-curl -H "X-API-Key: $API_KEY" \
-     -X POST http://localhost/ask \
+# 4. Test API (mock API key is: lab12_2A202600353_BuiHuuHuan)
+curl -H "X-API-Key: lab12_2A202600353_BuiHuuHuan" \
+     -X POST http://localhost:8000/ask \
      -H "Content-Type: application/json" \
      -d '{"question": "What is deployment?"}'
 ```
